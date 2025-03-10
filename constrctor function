@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	Person(int m_a,int m_b,int m_c,int num)
+	{
+		a = m_a;
+		b = m_b;
+		c = m_c;
+		p_num = new int(num);
+		cout << "Person(int a)" << endl;
+	}
+	void set(int n)
+	{
+		a = n;
+	}
+	int get_a()
+	{
+		return a;
+	}
+	int get_b()
+	{
+		return b;
+	}
+	int get_c()
+	{
+		return c;
+	}
+	int get_num()
+	{
+		return *p_num;
+	}
+	Person(const Person& p)
+	{
+		a = p.a;
+		b = p.b;
+		c = p.c;
+		p_num = new int(*p.p_num);
+		cout << "Person(const Person& p)" << endl;
+	}
+	~Person()
+	{
+		if (p_num != NULL)
+		{
+			delete p_num;
+			p_num = NULL;
+		}
+	}
+private:
+	int a;
+	int b;
+	int c;
+	int* p_num;
+};
+int main()
+{
+	int a, b, c,num;
+	cin >> a >> b >> c>>num;
+	Person p(a, b, c,num);
+	cout << p.get_a() << p.get_b() <<p.get_c() <<  endl;
+	Person p2(p);
+	cout << p2.get_num() << endl;
+	int n;
+	cin >> n;
+	p.set(n);
+	cout << p.get_a() << endl;
+	system("pause");
+	return 0;
+}
